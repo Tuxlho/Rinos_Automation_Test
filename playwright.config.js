@@ -15,6 +15,7 @@ export default defineConfig({
   ],
   use: {
     baseURL: process.env.BASE_URL || 'https://api.example.com',
+    ignoreHTTPSErrors: true,
     extraHTTPHeaders: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
