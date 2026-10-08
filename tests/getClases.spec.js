@@ -8,3 +8,12 @@ test('Obtener las Clases Existentes en Base de Datos', async ({ request }) => {
     const response = await request.get(fullURI)
     console.log(await response.json())
 })
+
+test('Obtener Todos los Planes de Pago Existentes', async ({ request }) => {
+    console.log("Iniciando Prueba Para Obtener Todos los Planes de Pago Existentes")
+    let fullURI = Local_DEV.baseURI + ':' + Local_DEV.port + pathParameter.PlanesDePago
+    console.log("URL construida es: " + fullURI)
+    const response = await request.get(fullURI)
+    //Comentar en Reunion que los Planes de Pago Necesitan una descripcion
+    console.log(await response.json())
+})
