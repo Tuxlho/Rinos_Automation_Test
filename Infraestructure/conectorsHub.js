@@ -4,6 +4,13 @@ export const Local_DEV =
     port: 7160
 }
 
+//Example to manage multiple Environments
+export const UAT =
+{
+    baseURI: "https://localhost",
+    port: 7160
+}
+
 export const pathParameter =
 {
     clases: "/api/clases",
