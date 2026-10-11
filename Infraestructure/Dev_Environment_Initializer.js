@@ -21,7 +21,7 @@ export const test = testsOnDev.extend({
 
 //Second Example To Have a Separate Inicialization for UAT Environment
 /** @type {import('@playwright/test').TestType<Dev_Environment_Initializer, {} & import('@playwright/test').PlaywrightWorkerOptions>} */
-export const test1 = testsOnDev.extend({
+export const test_UAT = testsOnDev.extend({
     UAT_Preparation: async ({ request }, use) => {
         const devAPI = new BaseAPI(UAT.baseURI, UAT.port, request)
         //await use(devAPI)
