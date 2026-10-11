@@ -14,6 +14,10 @@ test('Obtener Todos los Planes de Pago Existentes', async ({ request }) => {
     let fullURI = Local_DEV.baseURI + ':' + Local_DEV.port + pathParameter.PlanesDePago
     console.log("URL construida es: " + fullURI)
     const response = await request.get(fullURI)
-    //Comentar en Reunion que los Planes de Pago Necesitan una descripcion
+    console.log('Status Code:', response.status());
+    //Mostrando el contenido del Response en Texto Plano
+    const rawText = await response.text();
+    console.log('Raw Response Body:', rawText);
+    //Mostrabdo el contenido como JSON
     console.log(await response.json())
 })
