@@ -7,5 +7,6 @@ export const Local_DEV =
 export const pathParameter =
 {
     clases: "/api/clases",
-    PlanesDePago: "/api/planespagos"
+    PlanesDePago: "/api/planespagos",
+    Roles: "/api/roles"
 }

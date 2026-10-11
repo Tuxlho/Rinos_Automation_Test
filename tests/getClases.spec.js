@@ -21,3 +21,16 @@ test('Obtener Todos los Planes de Pago Existentes', async ({ request }) => {
     //Mostrabdo el contenido como JSON
     console.log(await response.json())
 })
+
+test('Obtener Todos los Roles que tenemos en el sistema', async ({ request }) => {
+    console.log("Iniciando Prueba Para Obtener Todos Los Roles Existentes")
+    let fullURI = Local_DEV.baseURI + ':' + Local_DEV.port + pathParameter.Roles
+    console.log("URL construida es: " + fullURI)
+    const response = await request.get(fullURI)
+    console.log('Status Code:', response.status());
+    //Mostrando el contenido del Response en Texto Plano
+    const rawText = await response.text();
+    console.log('Raw Response Body:', rawText);
+    //Mostrabdo el contenido como JSON
+    console.log(await response.json())
+})
