@@ -24,3 +24,10 @@ test('Obtener Todos los Roles que tenemos en el sistema', async ({ request }) =>
         baseApiServices.enviar_Request_Simple_Sin_Parametros(pathParameter.Roles)
     expect(getResponse.status()).toBe(200);
 })
+
+test('Obtener Todos los Usuarios que tenemos en el sistema', async ({ request }) => {
+    const baseApiServices = new BaseAPI(Local_DEV.baseURI, Local_DEV.port, request)
+    const getResponse = await
+        baseApiServices.enviar_Request_Simple_Sin_Parametros(pathParameter.Usuarios)
+    expect(getResponse.status()).toBe(200);
+})
