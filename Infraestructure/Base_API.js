@@ -11,24 +11,20 @@ export class BaseAPI {
         console.log("From Base API We have as baseEndPoint: " + this.baseEndPoint)
     }
 
-    build_Full_URI(pathParameter)
-    {
+    build_Full_URI(pathParameter) {
         let fullURI = this.baseEndPoint + ':' + this.baseUriPort + pathParameter
         return fullURI
     }
 
-    getActualEndPoint()
-    {
+    getActualEndPoint() {
         return this.baseEndPoint
     }
 
-    getActualPort()
-    {
+    getActualPort() {
         return this.baseUriPort
     }
 
-    getInternalRequestObject()
-    {
+    getInternalRequestObject() {
         return this.request
     }
 
