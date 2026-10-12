@@ -29,7 +29,7 @@ test('Obtener un Rol Epecifico del Sistema Basado en su ID', async ({ baseApiOnD
     expect(getResponse.status()).toBe(200)
 })
 
-test('Obtener un Usuario Epecifico del Sistema Basado en su ID', async ({ baseApiOnDevEnvironment }) => {
+test('Obtener un Usuario Especifico del Sistema Basado en su ID', async ({ baseApiOnDevEnvironment }) => {
     const baseApiServices = baseApiOnDevEnvironment
     const getResponse = await
         baseApiServices.enviar_Request_Simple_Sin_Parametros(pathParameter.Roles + "/1")
