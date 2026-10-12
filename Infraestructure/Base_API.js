@@ -11,6 +11,27 @@ export class BaseAPI {
         console.log("From Base API We have as baseEndPoint: " + this.baseEndPoint)
     }
 
+    build_Full_URI(pathParameter)
+    {
+        let fullURI = this.baseEndPoint + ':' + this.baseUriPort + pathParameter
+        return fullURI
+    }
+
+    getActualEndPoint()
+    {
+        return this.baseEndPoint
+    }
+
+    getActualPort()
+    {
+        return this.baseUriPort
+    }
+
+    getInternalRequestObject()
+    {
+        return this.request
+    }
+
     showQueryParameters() {
         console.log("From Base API We have as Query_Parameter: " + this.baseUriBuilder.queryParameter)
     }
@@ -20,7 +41,7 @@ export class BaseAPI {
     }
 
     async enviar_Request_Simple_Sin_Parametros(pathParameter) {
-        let fullURI = this.baseEndPoint + ':' + this.baseUriPort + pathParameter
+        let fullURI = this.build_Full_URI(pathParameter)
         console.log("URL construida es: " + fullURI)
         const response = await this.request.get(fullURI)
         console.log('Status Code:', response.status());
