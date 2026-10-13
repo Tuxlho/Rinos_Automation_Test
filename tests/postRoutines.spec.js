@@ -55,7 +55,7 @@ test('Dar de Alta un Usuario del Tipo Miembro en el Sistema', async ({ baseApiOn
     console.log("Response by Text: " + responseText)
     console.log(await response.json())
     console.log("Se Obtuvo el codigo de Status: " + response.status())
-    expect(response.status()).toBe(201);
+    expect(response.status()).toBe(201)
 })
 
 test('Dar de Alta una Clase en el Sistema', async ({ baseApiOnDevEnvironment }) => {
@@ -79,5 +79,5 @@ test('Dar de Alta una Clase en el Sistema', async ({ baseApiOnDevEnvironment }) 
     console.log("Response by Text: " + responseText)
     console.log(await response.json())
     console.log("Se Obtuvo el codigo de Status: " + response.status())
-    expect(response.status()).toBe(201);
+    expect(response.status()).toBe(201)
 })
