@@ -4,6 +4,8 @@ import { RandomNames } from '../Utils/randomNames'
 import { getRandomBirthdate } from '../Utils/randomBirthDate'
 import crearUsuarios from '../Payloads/crearUsuarios.json'
 import crearClase from '../Payloads/crearClase.json'
+import fs from 'fs'
+import path from 'path'
 
 test('Dar de Alta un Usuario del Tipo Administrador en el Sistema', async ({ baseApiOnDevEnvironment }) => {
     const baseApiServices = baseApiOnDevEnvironment
@@ -81,3 +83,19 @@ test('Dar de Alta una Clase en el Sistema', async ({ baseApiOnDevEnvironment }) 
     console.log("Se Obtuvo el codigo de Status: " + response.status())
     expect(response.status()).toBe(201)
 })
+
+test('Crear un Nuevo Registro de Asistencia,' +
+    'usando JSON por Lectura de archivo en lugar de importarlo',
+    async ({ baseApiOnDevEnvironment }) => {
+        //Rutinas para importar el Archivo
+        const filePath = path.resolve(__dirname, '../Payloads/nuevaAsistencia.json')
+        const rawData = fs.readFileSync(filePath, 'utf8')
+        let objectNuevaAsistencia = JSON.parse(rawData)
+        console.log('Contenido del JSON: ', + objectNuevaAsistencia)
+        console.log(objectNuevaAsistencia)
+
+        //Rutinas Generales para modificar el JSON antes de enviarlo
+        const baseApiServices = baseApiOnDevEnvironment
+        console.log("Actual Base URL: " + baseApiServices.getActualEndPoint())
+        console.log("Puerto Actual: " + baseApiServices.getActualPort())
+    })
