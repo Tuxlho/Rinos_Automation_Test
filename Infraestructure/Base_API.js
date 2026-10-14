@@ -47,6 +47,21 @@ export class BaseAPI {
         //Mostrabdo el contenido como JSON
         console.log("Respuesta en formato JSON")
         console.log(await response.json())
-        return response;
+        return response
+    }
+
+    async enviar_Request_Incluyendo_Body_Request_Sin_Header(bodyRequest, pathParameter) {
+        let fullURI = this.build_Full_URI(pathParameter)
+        console.log("URL construida es: " + fullURI)
+        const response = await this.request.post(fullURI,
+            {
+                data: bodyRequest
+            }
+        )
+        const responseText = await response.text()
+        console.log("Response by Text: " + responseText)
+        console.log(await response.json())
+        console.log("Se Obtuvo el codigo de Status: " + response.status())
+        return response
     }
 }
