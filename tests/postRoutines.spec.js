@@ -91,8 +91,7 @@ test('Crear un Nuevo Registro de Asistencia,' +
         const filePath = path.resolve(__dirname, '../Payloads/nuevaAsistencia.json')
         const rawData = fs.readFileSync(filePath, 'utf8')
         let objectNuevaAsistencia = JSON.parse(rawData)
-        objectNuevaAsistencia.Id_asistencia = 27
-        objectNuevaAsistencia.Fk_id_clase = 32
+        objectNuevaAsistencia.Fk_id_clase = 4
         objectNuevaAsistencia.Fk_id_usuario = 24
         objectNuevaAsistencia.Fk_tipo_rol = 2
         console.log('Contenido del JSON: ', + objectNuevaAsistencia)

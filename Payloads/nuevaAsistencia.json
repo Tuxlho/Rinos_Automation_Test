@@ -1,5 +1,4 @@
 {
-    "Id_asistencia": 1,
     "Fk_id_clase": 1,
     "Fk_id_usuario": 1,
     "Fk_tipo_rol": 1
