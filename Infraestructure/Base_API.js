@@ -39,15 +39,15 @@ export class BaseAPI {
     async enviar_Request_Simple_Sin_Parametros(pathParameter) {
         let fullURI = this.build_Full_URI(pathParameter)
         console.log("URL construida es: " + fullURI)
-        const response = await this.request.get(fullURI)
-        console.log('Status Code:', response.status());
+        let gotResults = await this.generarRequestSimpleSinSalidasDePatalla(fullURI, true)
+        console.log('Status Code:', gotResults.Response.status());
         //Mostrando el contenido del Response en Texto Plano
-        const rawText = await response.text();
+        const rawText = await gotResults.Response.text();
         console.log('Raw Response Body:', rawText);
         //Mostrabdo el contenido como JSON
         console.log("Respuesta en formato JSON")
-        console.log(await response.json())
-        return response
+        console.log(await gotResults.Response.json())
+        return gotResults.Response
     }
 
     async enviar_Request_Incluyendo_Body_Request_Sin_Header(bodyRequest, pathParameter) {
@@ -63,5 +63,19 @@ export class BaseAPI {
         console.log(await response.json())
         console.log("Se Obtuvo el codigo de Status: " + response.status())
         return response
+    }
+
+    async generarRequestSimpleSinSalidasDePatalla(test_URI, wasBuildFullURL) {
+        let fullURI
+        if (!wasBuildFullURL) {
+            fullURI = this.build_Full_URI(test_URI)
+        } else fullURI = test_URI
+        const Response = await this.request.get(fullURI)
+        const results =
+        {
+            Response,
+            fullURI
+        }
+        return results
     }
 }
