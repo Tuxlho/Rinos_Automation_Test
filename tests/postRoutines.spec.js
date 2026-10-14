@@ -102,4 +102,8 @@ test('Crear un Nuevo Registro de Asistencia,' +
         const baseApiServices = baseApiOnDevEnvironment
         console.log("Actual Base URL: " + baseApiServices.getActualEndPoint())
         console.log("Puerto Actual: " + baseApiServices.getActualPort())
+        const gotResponse = await baseApiServices.
+            enviar_Request_Incluyendo_Body_Request_Sin_Header(objectNuevaAsistencia,
+                pathParameter.Asistencias)
+        expect(gotResponse.status()).toBe(201)
     })

@@ -17,5 +17,5 @@ export const pathParameter =
     PlanesDePago: "/api/planespagos",
     Roles: "/api/roles",
     Usuarios: "/api/usuarios",
-    Asistencias: "/api/asistencia"
+    Asistencias: "/api/asistencias"
 }
