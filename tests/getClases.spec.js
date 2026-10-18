@@ -27,7 +27,16 @@ test('Obtener Todos los Roles que tenemos en el sistema', async ({ request }) =>
 test('Obtener Todos los Usuarios que tenemos en el sistema', async ({ request }) => {
     const getResponse = await
         baseApiServices.enviar_Request_Simple_Sin_Parametros(pathParameter.Usuarios)
-    expect(getResponse.status()).toBe(200);
+    expect(getResponse.status()).toBe(200)
+    //Rutina de Validacion que existan mas de 2 usuarios en el sistema, como consistencia
+    const jsonUsersArray = await getResponse.json()
+    //Verificaciones, para asegurar tenemos un arreglo de varias opciones
+    expect(jsonUsersArray.length).toBeGreaterThan(2)
+    expect(Array.isArray(jsonUsersArray)).toBe(true)
+    expect(jsonUsersArray[0]).toHaveProperty('id_Usuario');
+    //Assertion para Validar ya exista el usuario Diana Gomez
+    const targetClass = jsonUsersArray.find(c => c.nombreUsuario === 'Diana Gomez')
+    expect(targetClass.nombreUsuario).toBe('Diana Gomez')
 })
 
 test.beforeEach('Definir el baseApiServices requerido por todas las pruebas',

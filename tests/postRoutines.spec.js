@@ -87,18 +87,24 @@ test('Dar de Alta una Clase en el Sistema', async ({ baseApiOnDevEnvironment }) 
 test('Crear un Nuevo Registro de Asistencia,' +
     'usando JSON por Lectura de archivo en lugar de importarlo',
     async ({ baseApiOnDevEnvironment }) => {
-        //Rutinas para importar el Archivo
+        const baseApiServices = baseApiOnDevEnvironment
+        //Rutinas para traer el Archivo en lugar de usar sentencia IMPORT nativa de JavaScript
         const filePath = path.resolve(__dirname, '../Payloads/nuevaAsistencia.json')
         const rawData = fs.readFileSync(filePath, 'utf8')
         let objectNuevaAsistencia = JSON.parse(rawData)
+        //Rutinas para Verificar Todos Los Usarios Registrados en el Sistema
+        const usersResults = await baseApiServices.generarRequestSimpleSinSalidasDePatalla(pathParameter.Usuarios, false)
+        console.log("Response para JSON a usar en el Random Process: ", usersResults.responseAsJson)
+        let userRandomIdSelected = await baseApiServices.seleccionaID_UsuarioAleatorioDeTodosLosRegistrados(usersResults.responseAsJson)
+        console.log("Selected Random Choice: ", userRandomIdSelected)
+
+        //Rutinas Generales para modificar el JSON antes de enviarlo
         objectNuevaAsistencia.Fk_id_clase = 4
-        objectNuevaAsistencia.Fk_id_usuario = 24
+        objectNuevaAsistencia.Fk_id_usuario = userRandomIdSelected
         objectNuevaAsistencia.Fk_tipo_rol = 2
         console.log('Contenido del JSON: ', + objectNuevaAsistencia)
         console.log(objectNuevaAsistencia)
 
-        //Rutinas Generales para modificar el JSON antes de enviarlo
-        const baseApiServices = baseApiOnDevEnvironment
         console.log("Actual Base URL: " + baseApiServices.getActualEndPoint())
         console.log("Puerto Actual: " + baseApiServices.getActualPort())
         const gotResponse = await baseApiServices.

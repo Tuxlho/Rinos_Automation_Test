@@ -46,7 +46,7 @@ export class BaseAPI {
         console.log('Raw Response Body:', rawText);
         //Mostrabdo el contenido como JSON
         console.log("Respuesta en formato JSON")
-        console.log(await gotResults.Response.json())
+        console.log(gotResults.responseAsJson)
         return gotResults.Response
     }
 
@@ -71,11 +71,21 @@ export class BaseAPI {
             fullURI = this.build_Full_URI(test_URI)
         } else fullURI = test_URI
         const Response = await this.request.get(fullURI)
+        let responseAsJson = await Response.json()
         const results =
         {
             Response,
-            fullURI
+            fullURI,
+            responseAsJson
         }
         return results
+    }
+
+    async seleccionaID_UsuarioAleatorioDeTodosLosRegistrados(JsonResponse) {
+        //Creando un arreglo solo con los id_Usuario de cada JSON
+        const arrayTargetData = JsonResponse.map(j => j.id_Usuario)
+        console.log("Estas son los IDS de Usario, para ejecutar el Random", arrayTargetData)
+        const randomChoice = arrayTargetData[Math.floor(Math.random() * arrayTargetData.length)]
+        return randomChoice
     }
 }
