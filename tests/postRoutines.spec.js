@@ -92,14 +92,18 @@ test('Crear un Nuevo Registro de Asistencia,' +
         const filePath = path.resolve(__dirname, '../Payloads/nuevaAsistencia.json')
         const rawData = fs.readFileSync(filePath, 'utf8')
         let objectNuevaAsistencia = JSON.parse(rawData)
-        //Rutinas para Verificar Todos Los Usarios Registrados en el Sistema
+        //Rutinas para Verificar Todos Los Usuarios Registrados en el Sistema
         const usersResults = await baseApiServices.generarRequestSimpleSinSalidasDePatalla(pathParameter.Usuarios, false)
-        console.log("Response para JSON a usar en el Random Process: ", usersResults.responseAsJson)
         let userRandomIdSelected = await baseApiServices.seleccionaID_UsuarioAleatorioDeTodosLosRegistrados(usersResults.responseAsJson)
-        console.log("Selected Random Choice: ", userRandomIdSelected)
+        console.log("Selected Random Choice User_ID: ", userRandomIdSelected)
+
+        //Rutina para Seleccionar Una Clase Aleatoria
+        const classAvailableResults = await baseApiServices.generarRequestSimpleSinSalidasDePatalla(pathParameter.clases, false)
+        let claseAleatoriaElegida = baseApiServices.seleccionarPorCualquierPropiedadDelJsonEligiendoUnoComoAleatorio(classAvailableResults.responseAsJson, "id_Clase")
+        console.log("Clase Aleatoria Seleccionada: " + claseAleatoriaElegida)
 
         //Rutinas Generales para modificar el JSON antes de enviarlo
-        objectNuevaAsistencia.Fk_id_clase = 4
+        objectNuevaAsistencia.Fk_id_clase = claseAleatoriaElegida
         objectNuevaAsistencia.Fk_id_usuario = userRandomIdSelected
         objectNuevaAsistencia.Fk_tipo_rol = 2
         console.log('Contenido del JSON: ', + objectNuevaAsistencia)

@@ -88,4 +88,11 @@ export class BaseAPI {
         const randomChoice = arrayTargetData[Math.floor(Math.random() * arrayTargetData.length)]
         return randomChoice
     }
+
+    seleccionarPorCualquierPropiedadDelJsonEligiendoUnoComoAleatorio(JsonResponse, propiedadObjetivo) {
+        const arrayTargetData = JsonResponse.map(j => j[propiedadObjetivo])
+        console.log("Estas son los IDS de Usario, para ejecutar el Random", arrayTargetData)
+        const tmpAleatorio = arrayTargetData[Math.floor(Math.random() * arrayTargetData.length)]
+        return tmpAleatorio
+    }
 }
