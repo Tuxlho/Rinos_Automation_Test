@@ -39,6 +39,21 @@ test('Obtener Todos los Usuarios que tenemos en el sistema', async ({ request })
     expect(targetClass.nombreUsuario).toBe('Diana Gomez')
 })
 
+test('Obtener Todas las Asistencias Existentes en Sistema', async ({ request }) => {
+    console.log("Iniciando la prueba para Obtener las Clases de la Base de Datos")
+    const getResponse = await
+        baseApiServices.enviar_Request_Simple_Sin_Parametros(pathParameter.Asistencias)
+    expect(getResponse.status()).toBe(200)
+    const jsonUsersArray = await getResponse.json()
+    //Verificaciones, para asegurar tenemos un arreglo de varias opciones
+    expect(jsonUsersArray.length).toBeGreaterThan(2)
+    expect(Array.isArray(jsonUsersArray)).toBe(true)
+    expect(jsonUsersArray[0]).toHaveProperty('id_asistencia');
+    //Assertion para Validar ya exista el usuario Diana Gomez
+    const targetClass = jsonUsersArray.find(c => c.id_asistencia === 23)
+    expect(targetClass.id_asistencia).toBe(23)
+})
+
 test.beforeEach('Definir el baseApiServices requerido por todas las pruebas',
     async ({ request }) => {
         baseApiServices = new BaseAPI(Local_DEV.baseURI, Local_DEV.port, request)
