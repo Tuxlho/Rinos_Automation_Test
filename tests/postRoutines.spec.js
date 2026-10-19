@@ -100,12 +100,17 @@ test('Crear un Nuevo Registro de Asistencia,' +
         //Rutina para Seleccionar Una Clase Aleatoria
         const classAvailableResults = await baseApiServices.generarRequestSimpleSinSalidasDePatalla(pathParameter.clases, false)
         let claseAleatoriaElegida = baseApiServices.seleccionarPorCualquierPropiedadDelJsonEligiendoUnoComoAleatorio(classAvailableResults.responseAsJson, "id_Clase")
-        console.log("Clase Aleatoria Seleccionada: " + claseAleatoriaElegida)
+        console.log("Clase Aleatoria Seleccionado: " + claseAleatoriaElegida)
+
+        //Rutina para seleccionar un Role Aleatorio
+        const datosDeRolesDisponibles = await baseApiServices.generarRequestSimpleSinSalidasDePatalla(pathParameter.Roles, false)
+        let roleAleatorioElegido = baseApiServices.seleccionarPorCualquierPropiedadDelJsonEligiendoUnoComoAleatorio(datosDeRolesDisponibles.responseAsJson, "id_Rol")
+        console.log("Perfil Aleatorio Seleccionada: " + roleAleatorioElegido)
 
         //Rutinas Generales para modificar el JSON antes de enviarlo
         objectNuevaAsistencia.Fk_id_clase = claseAleatoriaElegida
         objectNuevaAsistencia.Fk_id_usuario = userRandomIdSelected
-        objectNuevaAsistencia.Fk_tipo_rol = 2
+        objectNuevaAsistencia.Fk_tipo_rol = roleAleatorioElegido
         console.log('Contenido del JSON: ', + objectNuevaAsistencia)
         console.log(objectNuevaAsistencia)
 
