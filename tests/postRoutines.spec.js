@@ -121,3 +121,11 @@ test('Crear un Nuevo Registro de Asistencia,' +
                 pathParameter.Asistencias)
         expect(gotResponse.status()).toBe(201)
     })
+
+test('Crear un Horario Para Una Clase De Forma Aleatoria', async ({ baseApiOnDevEnvironment }) => {
+    const baseApiServices = baseApiOnDevEnvironment
+    let usuarioAleatorio = await baseApiServices.generarDatoAleatorioDeCualquierAPIDelSistema(pathParameter.Usuarios, "id_Usuario")
+    let claseAleatoria = await baseApiServices.generarDatoAleatorioDeCualquierAPIDelSistema(pathParameter.clases, "id_Clase")
+    console.log("El ID de Usario Aleatorio Escogido Fue:", usuarioAleatorio)
+    console.log("La Clase Aleatoria Elegida Es: ", claseAleatoria)
+})

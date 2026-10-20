@@ -1,5 +1,3 @@
-import { Local_DEV, pathParameter } from '../Infraestructure/conectorsHub'
-
 export class BaseAPI {
     constructor(endPoint, uriPORT, request) {
         this.baseEndPoint = endPoint
@@ -91,8 +89,14 @@ export class BaseAPI {
 
     seleccionarPorCualquierPropiedadDelJsonEligiendoUnoComoAleatorio(JsonResponse, propiedadObjetivo) {
         const arrayTargetData = JsonResponse.map(j => j[propiedadObjetivo])
-        console.log("Estas son los IDS de Usario, para ejecutar el Random", arrayTargetData)
+        console.log("Estas son los IDs, para ejecutar el Random", arrayTargetData)
         const tmpAleatorio = arrayTargetData[Math.floor(Math.random() * arrayTargetData.length)]
         return tmpAleatorio
+    }
+
+    async generarDatoAleatorioDeCualquierAPIDelSistema(pathParemeter, llaveDeAleatorioBase) {
+        let tmpDatosDisponibles = await this.generarRequestSimpleSinSalidasDePatalla(pathParemeter, false)
+        let tmpAleatorioElegido = this.seleccionarPorCualquierPropiedadDelJsonEligiendoUnoComoAleatorio(tmpDatosDisponibles.responseAsJson, llaveDeAleatorioBase)
+        return tmpAleatorioElegido
     }
 }
