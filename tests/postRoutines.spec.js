@@ -2,8 +2,10 @@ import { test, expect } from '../Infraestructure/Dev_Environment_Initializer'
 import { pathParameter } from '../Infraestructure/conectorsHub'
 import { RandomNames } from '../Utils/randomNames'
 import { getRandomBirthdate } from '../Utils/randomBirthDate'
+import { getRandomTime } from '../Utils/randomEventTime'
 import crearUsuarios from '../Payloads/crearUsuarios.json'
 import crearClase from '../Payloads/crearClase.json'
+import nuevoHorarioClase from '../Payloads/clasesHorario.json'
 import fs from 'fs'
 import path from 'path'
 
@@ -126,6 +128,12 @@ test('Crear un Horario Para Una Clase De Forma Aleatoria', async ({ baseApiOnDev
     const baseApiServices = baseApiOnDevEnvironment
     let usuarioAleatorio = await baseApiServices.generarDatoAleatorioDeCualquierAPIDelSistema(pathParameter.Usuarios, "id_Usuario")
     let claseAleatoria = await baseApiServices.generarDatoAleatorioDeCualquierAPIDelSistema(pathParameter.clases, "id_Clase")
+    let horaInicioAleatoria = getRandomTime(7, 23)
     console.log("El ID de Usario Aleatorio Escogido Fue:", usuarioAleatorio)
     console.log("La Clase Aleatoria Elegida Es: ", claseAleatoria)
+    console.log("Hora Aleatoria Generada es: ", horaInicioAleatoria)
+    const altaHorarioAleatorioClase = nuevoHorarioClase
+    altaHorarioAleatorioClase.Fk_id_clase = claseAleatoria
+    altaHorarioAleatorioClase.Fk_id_usuario = usuarioAleatorio
+    altaHorarioAleatorioClase.GetTime = horaInicioAleatoria
 })
