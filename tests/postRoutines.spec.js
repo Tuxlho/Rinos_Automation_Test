@@ -133,10 +133,16 @@ test('Crear un Horario Para Una Clase De Forma Aleatoria', async ({ baseApiOnDev
     console.log("El ID de Usario Aleatorio Escogido Fue:", usuarioAleatorio)
     console.log("La Clase Aleatoria Elegida Es: ", claseAleatoria)
     console.log("Hora Aleatoria Generada es: ", horaInicioAleatoria)
-    console.log("La hora de Termino de l Clase es: ", horaTerminoAleatoria)
+    console.log("La hora de Termino de la Clase es: ", horaTerminoAleatoria)
     const altaHorarioAleatorioClase = nuevoHorarioClase
     altaHorarioAleatorioClase.Fk_id_clase = claseAleatoria
     altaHorarioAleatorioClase.Fk_id_usuario = usuarioAleatorio
     altaHorarioAleatorioClase.GetTime = horaInicioAleatoria
     altaHorarioAleatorioClase.Duracion = horaTerminoAleatoria
+    console.log("El JSON que se enviara es: ")
+    console.log(altaHorarioAleatorioClase)
+    const gotResponse = await baseApiServices.
+        enviar_Request_Incluyendo_Body_Request_Sin_Header(altaHorarioAleatorioClase,
+            pathParameter.HorariosClase)
+    expect(gotResponse.status()).toBe(201)
 })
