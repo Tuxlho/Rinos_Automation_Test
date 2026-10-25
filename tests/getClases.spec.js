@@ -54,6 +54,14 @@ test('Obtener Todas las Asistencias Existentes en Sistema', async ({ request }) 
     expect(targetClass.id_asistencia).toBe(23)
 })
 
+test('Obtener todos los horarios disponibles para las clases ', async ({ request }) => {
+    console.log("Iniciando la prueba para obtener todos los Horarios de las Clases Disponibles")
+    const getResponse = await
+        baseApiServices.enviar_Request_Simple_Sin_Parametros(pathParameter.HorariosClase)
+    expect(getResponse.status()).toBe(200)
+})
+
+
 test.beforeEach('Definir el baseApiServices requerido por todas las pruebas',
     async ({ request }) => {
         baseApiServices = new BaseAPI(Local_DEV.baseURI, Local_DEV.port, request)
