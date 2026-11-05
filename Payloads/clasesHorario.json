@@ -1,6 +1,6 @@
 {
     "Fk_id_clase": 1,
-    "Fk_id_usuario": 345,
+    "Fk_id_instructor": 345,
     "Duracion": "2:0:0",
     "Horario": "9:0:0",
     "Costo": 1456.98

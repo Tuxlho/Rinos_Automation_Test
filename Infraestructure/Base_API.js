@@ -99,4 +99,9 @@ export class BaseAPI {
         let tmpAleatorioElegido = this.seleccionarPorCualquierPropiedadDelJsonEligiendoUnoComoAleatorio(tmpDatosDisponibles.responseAsJson, llaveDeAleatorioBase)
         return tmpAleatorioElegido
     }
+
+    showCurrentURL_AndPortConfigured() {
+        console.log("Actual Base URL: " + this.getActualEndPoint())
+        console.log("Puerto Actual: " + this.getActualPort())
+    }
 }

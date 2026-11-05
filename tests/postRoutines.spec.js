@@ -136,7 +136,7 @@ test('Crear un Horario Para Una Clase De Forma Aleatoria', async ({ baseApiOnDev
     console.log("La hora de Termino de la Clase es: ", horaTerminoAleatoria)
     const altaHorarioAleatorioClase = nuevoHorarioClase
     altaHorarioAleatorioClase.Fk_id_clase = claseAleatoria
-    altaHorarioAleatorioClase.Fk_id_usuario = usuarioAleatorio
+    altaHorarioAleatorioClase.Fk_id_instructor = usuarioAleatorio
     //altaHorarioAleatorioClase.GetTime = horaInicioAleatoria
     altaHorarioAleatorioClase.Duracion = horaTerminoAleatoria
     console.log("El JSON que se enviara es: ")
