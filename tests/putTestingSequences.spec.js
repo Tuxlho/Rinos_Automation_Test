@@ -35,12 +35,25 @@ test('PUT Modificar El Nombre de un Usuario Del Sistema', async ({ baseApiOnDevE
 test('Modificacion Base', async ({ baseApiOnDevEnvironment }) => {
     const getInicial = await obtenerPorGET_ObjetosDelServicioPorActualizar(baseApiOnDevEnvironment, "Obteniendo las clases a procesar", pathParameter.clases)
     console.log("JSON Recibido: ", getInicial)
-    let randomIDToModify = await baseApiOnDevEnvironment.seleccionarPorCualquierPropiedadDelJsonEligiendoUnoComoAleatorio(getInicial.responseAsJson, "id_Clase")
-    console.log("ID Seleccionado para Modificar: ", randomIDToModify)
+    let catchedRandomData = await baseApiOnDevEnvironment.seleccionarPorCualquierPropiedadDelJsonEligiendoUnoComoAleatorio(getInicial.responseAsJson, "id_Clase")
+    console.log("ID Seleccionado para Modificar: ", catchedRandomData)
+    let jsonToModify = getInicial.responseAsJson.find(x => x.id_Clase === catchedRandomData)
+    console.log("Json que sera modificado: ", jsonToModify)
+    jsonToModify.descripcion = "PUT Mejorar la condicion Cardiovascular de la persona"
+    jsonToModify.nombreClase = "PUT Gimnasia Artistica"
+    console.log("Json Antes de Ser Enviado al PUT: ", jsonToModify)
+    let fullURI = baseApiOnDevEnvironment.build_Full_URI(pathParameter.Usuarios)
+    const response = await baseApiOnDevEnvironment.getInternalRequestObject().put(fullURI,
+        {
+            data: jsonToModify
+        }
+    )
+    let jsonBody = await response.json()
+    console.log("Objeto Aceptado y Devuelto en Response", jsonBody)
+
 })
 
-async function obtenerPorGET_ObjetosDelServicioPorActualizar(local_baseApiOnDevEnvironment, message, baseURI)
-{
+async function obtenerPorGET_ObjetosDelServicioPorActualizar(local_baseApiOnDevEnvironment, message, baseURI) {
     console.log(message)
     local_baseApiOnDevEnvironment.showCurrentURL_AndPortConfigured()
     const resultsItems = await local_baseApiOnDevEnvironment.generarRequestSimpleSinSalidasDePatalla(baseURI, false)
