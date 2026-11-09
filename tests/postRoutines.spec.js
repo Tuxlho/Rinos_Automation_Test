@@ -3,13 +3,15 @@ import { pathParameter } from '../Infraestructure/conectorsHub'
 import { RandomNames } from '../Utils/randomNames'
 import { getRandomBirthdate } from '../Utils/randomBirthDate'
 import { getRandomTime, getRandomEndTime } from '../Utils/randomEventTime'
+import { getRandomCost } from '../Utils/randomCost'
 import crearUsuarios from '../Payloads/crearUsuarios.json'
 import crearClase from '../Payloads/crearClase.json'
 import nuevoHorarioClase from '../Payloads/clasesHorario.json'
+import planPago from '../Payloads/planesPago.json'
 import fs from 'fs'
 import path from 'path'
 
-test('Dar de Alta un Usuario del Tipo Administrador en el Sistema', async ({ baseApiOnDevEnvironment }) => {
+test('POST: Dar de Alta un Usuario del Tipo Administrador en el Sistema', async ({ baseApiOnDevEnvironment }) => {
     const baseApiServices = baseApiOnDevEnvironment
     console.log("Actual Base URL: " + baseApiServices.getActualEndPoint())
     console.log("Puerto Actual: " + baseApiServices.getActualPort())
@@ -36,7 +38,7 @@ test('Dar de Alta un Usuario del Tipo Administrador en el Sistema', async ({ bas
     expect(response.status()).toBe(201);
 })
 
-test('Dar de Alta un Usuario del Tipo Miembro en el Sistema', async ({ baseApiOnDevEnvironment }) => {
+test('POST: Dar de Alta un Usuario del Tipo Miembro en el Sistema', async ({ baseApiOnDevEnvironment }) => {
     const baseApiServices = baseApiOnDevEnvironment
     console.log("Actual Base URL: " + baseApiServices.getActualEndPoint())
     console.log("Puerto Actual: " + baseApiServices.getActualPort())
@@ -62,7 +64,7 @@ test('Dar de Alta un Usuario del Tipo Miembro en el Sistema', async ({ baseApiOn
     expect(response.status()).toBe(201)
 })
 
-test('Dar de Alta una Clase en el Sistema', async ({ baseApiOnDevEnvironment }) => {
+test('POST: Dar de Alta una Clase en el Sistema', async ({ baseApiOnDevEnvironment }) => {
     const baseApiServices = baseApiOnDevEnvironment
     console.log("Actual Base URL: " + baseApiServices.getActualEndPoint())
     console.log("Puerto Actual: " + baseApiServices.getActualPort())
@@ -86,7 +88,7 @@ test('Dar de Alta una Clase en el Sistema', async ({ baseApiOnDevEnvironment }) 
     expect(response.status()).toBe(201)
 })
 
-test('Crear un Nuevo Registro de Asistencia,' +
+test('POST Crear un Nuevo Registro de Asistencia,' +
     'usando JSON por Lectura de archivo en lugar de importarlo',
     async ({ baseApiOnDevEnvironment }) => {
         const baseApiServices = baseApiOnDevEnvironment
@@ -124,7 +126,7 @@ test('Crear un Nuevo Registro de Asistencia,' +
         expect(gotResponse.status()).toBe(201)
     })
 
-test('Crear un Horario Para Una Clase De Forma Aleatoria', async ({ baseApiOnDevEnvironment }) => {
+test('POST: Crear un Horario Para Una Clase De Forma Aleatoria', async ({ baseApiOnDevEnvironment }) => {
     const baseApiServices = baseApiOnDevEnvironment
     let usuarioAleatorio = await baseApiServices.generarDatoAleatorioDeCualquierAPIDelSistema(pathParameter.Usuarios, "id_Usuario")
     let claseAleatoria = await baseApiServices.generarDatoAleatorioDeCualquierAPIDelSistema(pathParameter.clases, "id_Clase")
@@ -144,5 +146,15 @@ test('Crear un Horario Para Una Clase De Forma Aleatoria', async ({ baseApiOnDev
     const gotResponse = await baseApiServices.
         enviar_Request_Incluyendo_Body_Request_Sin_Header(altaHorarioAleatorioClase,
             pathParameter.HorariosClase)
+    expect(gotResponse.status()).toBe(201)
+})
+
+test('POST: Crear Un Plan De Pago', async ({ baseApiOnDevEnvironment }) => {
+    baseApiOnDevEnvironment.showCurrentURL_AndPortConfigured()
+    planPago.monto = getRandomCost(40, 120)
+    planPago.vigencia = getRandomBirthdate(-1, 2) + 'T' + getRandomTime(0, 23)
+    planPago.descripcion_plan = "Plan Mixto"
+    console.log("Json Por ser enviado POST: ", planPago)
+    const gotResponse = await baseApiOnDevEnvironment.enviar_Request_Incluyendo_Body_Request_Sin_Header(planPago, pathParameter.PlanesDePago)
     expect(gotResponse.status()).toBe(201)
 })
