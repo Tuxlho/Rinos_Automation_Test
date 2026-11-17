@@ -35,3 +35,10 @@ test('Obtener un Usuario Especifico del Sistema Basado en su ID', async ({ baseA
         baseApiServices.enviar_Request_Simple_Sin_Parametros(pathParameter.Usuarios + "/1")
     expect(getResponse.status()).toBe(200)
 })
+
+test('Obtener un Registro de Asistencia Especifico del Sistema Basado en su ID', async ({ baseApiOnDevEnvironment }) => {
+    const baseApiServices = baseApiOnDevEnvironment
+    const getResponse = await
+        baseApiServices.enviar_Request_Simple_Sin_Parametros(pathParameter.Asistencias + "/37")
+    expect(getResponse.status()).toBe(200)
+})
