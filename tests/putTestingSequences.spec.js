@@ -11,7 +11,7 @@ async function obtenerPorGET_ObjetosDelServicioPorActualizar(local_baseApiOnDevE
     return resultsItems
 }
 
-test('PUT Modificar El Nombre de un Usuario Del Sistema', async ({ baseApiOnDevEnvironment }) => {
+test('PUT: Modificar El Nombre de un Usuario Del Sistema', async ({ baseApiOnDevEnvironment }) => {
     const baseApiServices = baseApiOnDevEnvironment
     baseApiServices.showCurrentURL_AndPortConfigured()
     const resultsItems = await baseApiServices.generarRequestSimpleSinSalidasDePatalla(pathParameter.Usuarios, false)
@@ -41,7 +41,7 @@ test('PUT Modificar El Nombre de un Usuario Del Sistema', async ({ baseApiOnDevE
     expect(jsonBody.nombreUsuario).toEqual(nameObject)
 })
 
-test('PUT Modificar el Horario de una Clase Existente', async ({ baseApiOnDevEnvironment }) => {
+test('PUT: Modificar el Horario de una Clase Existente', async ({ baseApiOnDevEnvironment }) => {
     const getInicial = await obtenerPorGET_ObjetosDelServicioPorActualizar(baseApiOnDevEnvironment, "Obteniendo las clases a procesar", pathParameter.clases)
     console.log("JSON Recibido: ", getInicial)
     let catchedRandomData = await baseApiOnDevEnvironment.seleccionarPorCualquierPropiedadDelJsonEligiendoUnoComoAleatorio(getInicial.responseAsJson, "id_Clase")
@@ -62,7 +62,7 @@ test('PUT Modificar el Horario de una Clase Existente', async ({ baseApiOnDevEnv
 
 })
 
-test('PUT Modificar un Plan de Pago una Existente', async ({ baseApiOnDevEnvironment }) => {
+test('PUT: Modificar un Plan de Pago una Existente', async ({ baseApiOnDevEnvironment }) => {
     const getInicial = await obtenerPorGET_ObjetosDelServicioPorActualizar(baseApiOnDevEnvironment, "Obteniendo los Planes de Pago a procesar", pathParameter.PlanesDePago)
     console.log("JSON Recibido: ", getInicial)
     let catchedRandomData = await baseApiOnDevEnvironment.seleccionarPorCualquierPropiedadDelJsonEligiendoUnoComoAleatorio(getInicial.responseAsJson, "id_Plan")

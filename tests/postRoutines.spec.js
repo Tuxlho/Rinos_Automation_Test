@@ -8,6 +8,7 @@ import crearUsuarios from '../Payloads/crearUsuarios.json'
 import crearClase from '../Payloads/crearClase.json'
 import nuevoHorarioClase from '../Payloads/clasesHorario.json'
 import planPago from '../Payloads/planesPago.json'
+import altaRoleJson from '../Payloads/altaRole.json'
 import fs from 'fs'
 import path from 'path'
 
@@ -153,8 +154,18 @@ test('POST: Crear Un Plan De Pago', async ({ baseApiOnDevEnvironment }) => {
     baseApiOnDevEnvironment.showCurrentURL_AndPortConfigured()
     planPago.monto = getRandomCost(40, 120)
     planPago.vigencia = getRandomBirthdate(-1, 2) + 'T' + getRandomTime(0, 23)
-    planPago.descripcion_plan = "Plan Mixto"
+    planPago.descripcion_plan = "Plan Verde"
     console.log("Json Por ser enviado POST: ", planPago)
     const gotResponse = await baseApiOnDevEnvironment.enviar_Request_Incluyendo_Body_Request_Sin_Header(planPago, pathParameter.PlanesDePago)
+    expect(gotResponse.status()).toBe(201)
+})
+
+test('POST: Crear Un Role para Sistema', async ({ baseApiOnDevEnvironment }) => {
+    baseApiOnDevEnvironment.showCurrentURL_AndPortConfigured()
+    altaRoleJson.Nombre = "Un Plan de Prueba Basico"
+    altaRoleJson.Description = "UN Plna para ligar a los Miembros de Box"
+    console.log("Json Por ser enviado POST: ")
+    console.log(altaRoleJson)
+    const gotResponse = await baseApiOnDevEnvironment.enviar_Request_Incluyendo_Body_Request_Sin_Header(planPago, pathParameter.Roles)
     expect(gotResponse.status()).toBe(201)
 })
