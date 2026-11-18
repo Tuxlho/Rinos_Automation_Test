@@ -1,5 +1,5 @@
-import { test, test_UAT, expect } from '../Infraestructure/Dev_Environment_Initializer'
-import { pathParameter } from '../Infraestructure/conectorsHub'
+import { test, test_UAT, expect } from '../../Infraestructure/Dev_Environment_Initializer'
+import { pathParameter } from '../../Infraestructure/conectorsHub'
 
 test('Obtener una Clase Basado en su ID', async ({ baseApiOnDevEnvironment }) => {
     const baseApiServices = baseApiOnDevEnvironment

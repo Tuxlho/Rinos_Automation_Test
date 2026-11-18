@@ -1,7 +1,7 @@
-import { test, expect } from '../Infraestructure/Dev_Environment_Initializer'
-import { pathParameter } from '../Infraestructure/conectorsHub'
-import { RandomNames } from '../Utils/randomNames'
-import { getRandomBirthdate } from '../Utils/randomBirthDate'
+import { test, expect } from '../../Infraestructure/Dev_Environment_Initializer'
+import { pathParameter } from '../../Infraestructure/conectorsHub'
+import { RandomNames } from '../../Utils/randomNames'
+import { getRandomBirthdate } from '../../Utils/randomBirthDate'
 
 async function obtenerPorGET_ObjetosDelServicioPorActualizar(local_baseApiOnDevEnvironment, message, baseURI) {
     console.log(message)

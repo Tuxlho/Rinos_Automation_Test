@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
-import { Local_DEV, pathParameter } from '../Infraestructure/conectorsHub'
-import { BaseAPI } from '../Infraestructure/Base_API'
+import { Local_DEV, pathParameter } from '../../Infraestructure/conectorsHub'
+import { BaseAPI } from '../../Infraestructure/Base_API'
 
 let baseApiServices
 
