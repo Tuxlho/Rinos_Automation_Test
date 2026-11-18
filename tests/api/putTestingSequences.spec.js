@@ -1,4 +1,4 @@
-import { test, expect } from '../../Infraestructure/Dev_Environment_Initializer'
+import { test, expect } from '../../Infraestructure/API_Environment_Initializer'
 import { pathParameter } from '../../Infraestructure/conectorsHub'
 import { RandomNames } from '../../Utils/randomNames'
 import { getRandomBirthdate } from '../../Utils/randomBirthDate'
