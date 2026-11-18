@@ -20,3 +20,8 @@ export const pathParameter =
     Asistencias: "/api/asistencias",
     HorariosClase: "/api/claseshorarios"
 }
+
+export const Rinos_UI_Production =
+{
+    URL: "https://ringym.premiumasp.net/"
+}
