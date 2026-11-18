@@ -8,6 +8,7 @@ export class Base_UI {
     }
 
     async navigateToLandingPage() {
+        console.log("env_URL has: ", this.runningSite)
         await this.page.goto(this.runningSite)
     }
 }
