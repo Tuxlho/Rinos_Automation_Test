@@ -8,7 +8,12 @@ export class Base_UI {
     }
 
     async navigateToLandingPage() {
-        console.log("env_URL has: ", this.runningSite)
+        this.showEnv_URL()
+        console.log("Checar si 'Page' Fixture esta inicializado: ", (this.page != null))
         await this.page.goto(this.runningSite)
+    }
+
+    showEnv_URL() {
+        console.log("El ambiente de Pruebas esta apuntando a env_URL: ", this.runningSite)
     }
 }
