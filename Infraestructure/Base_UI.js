@@ -16,4 +16,8 @@ export class Base_UI {
     showEnv_URL() {
         console.log("El ambiente de Pruebas esta apuntando a env_URL: ", this.runningSite)
     }
+
+    getPageFixture() {
+        return this.page
+    }
 }

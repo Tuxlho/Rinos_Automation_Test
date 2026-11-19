@@ -1,6 +1,7 @@
 import { Rinos_UI_Production } from '../Infraestructure/conectorsHub'
 import { Base_UI } from '../Infraestructure/Base_UI'
 import { test as ui_OnProd } from '@playwright/test'
+export { expect } from '@playwright/test'
 
 /**
  * Define the type for your custom fixtures
