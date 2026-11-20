@@ -22,3 +22,11 @@ test('Verificar Labels del Header', async ({ ui_Production }) => {
     await expect(labelComunidad).toHaveText('Comunidad')
     await expect(labelContacto).toHaveText('Contacto')
 })
+
+test('Verificar Boton Medio Empieza Tu Prueba y Hacer Click', async ({ ui_Production }) => {
+    console.log('Verificando los Botones de la Pagina principal')
+    const localPage = ui_Production.getPageFixture()
+    const heroActions = localPage.locator('.hero-actions');
+    const botonEmpiezaTuPrueba = heroActions.getByRole('link', { name: /Empieza tu prueba/i });
+    botonEmpiezaTuPrueba.click
+})
